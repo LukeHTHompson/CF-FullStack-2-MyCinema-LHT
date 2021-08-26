@@ -1,0 +1,24 @@
+{
+  "name": "cf-fullstack-2-mycinema-lht",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LukeHTHompson/CF-FullStack-2-MyCinema-LHT.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LukeHTHompson/CF-FullStack-2-MyCinema-LHT/issues"
+  },
+  "homepage": "https://github.com/LukeHTHompson/CF-FullStack-2-MyCinema-LHT#readme",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
