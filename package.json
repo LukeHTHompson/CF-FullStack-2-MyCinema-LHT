@@ -20,5 +20,8 @@
   "homepage": "https://github.com/LukeHTHompson/CF-FullStack-2-MyCinema-LHT#readme",
   "dependencies": {
     "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0"
   }
 }
