@@ -3,6 +3,48 @@ const express = require("express"),
 
 const app = express();
 
+let topTenFilms = [
+  {
+    title: "Catch Me If You Can",
+    director: "Steven Spielberg"
+  },
+  {
+    title: "Wall-E",
+    director: "Andrew Stanton"
+  },
+  {
+    title: "Up",
+    director: "Pete Doctor"
+  },
+  {
+    title: "The Tomorrow War",
+    director: "Chris McKay"
+  },
+  {
+    title: "The Suicide Squad",
+    director: "James Gunn"
+  },
+  {
+    title: "PAW Patrol: The Movie",
+    director: "Cal Brunker"
+  },
+  {
+    title: "Free Guy",
+    director: "Matt Lieberman"
+  },
+  {
+    title: "Narco Sub",
+    director: "Shawn Welling"
+  },
+  {
+    title: "Black Widow",
+    director: "Cate Shortland"
+  },
+  {
+    title: "The Shawshank Redemption",
+    director: "Frank Darabont"
+  }
+]
 
 // Middleware
 // Serve Documentation file as static from the public folder
