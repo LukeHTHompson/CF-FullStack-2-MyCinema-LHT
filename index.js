@@ -58,8 +58,50 @@ app.get("/", (req, res) => {
   res.send("Welcome to MyCinema!");
 });
 
+// Excercise 2.5 Additions
+// Returns a list of all movies in the database.
 app.get("/movies", (req, res) => {
-  res.json(topTenFilms);
+  res.send("GET all movies in database")
+});
+
+// Returns info on a particular movie via title.
+app.get("/movies/:title", (req, res) => {
+  res.send("GET info on one movie specified by title")
+});
+
+// Adds a movie to a user's list of favorites.
+app.post("/:userId/favorites/:title/add", (req, res) => {
+  res.send("POST a new movie to your list of favorites by title")
+});
+
+// Removes a movie from a user's list of favorites.
+app.delete("/:user/favorites/:title/remove", (req, res) => {
+  res.send("DELETE an existing movie from your list of favorites by title")
+});
+
+// Returns info on a specific film genre.
+app.get("/genres/:genre", (req, res) => {
+  res.send("GET info on a genre of film by name/title")
+});
+
+// Returns data on a specific director.
+app.get("/directors/:director", (req, res) => {
+  res.send("GET info on a director by name")
+});
+
+// Create your own account with a custom username.
+app.post("/createUser", (req, res) => {
+  res.send("POST a new account to the site with info in your request body")
+});
+
+// Update your own username.
+app.post("/:userId/:name", (req, res) => {
+  res.send("POST an update to your username")
+});
+
+// Delete your own account.
+app.delete("/:userId/delete", (req, res) => {
+  res.send("DELETE your own account")
 });
 
 // Test for error handler

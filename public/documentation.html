@@ -5,14 +5,199 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
 	<title>myCinema Documentation</title>
-  <link rel="shortcut icon" type="image/x-icon" href="img/lht-icon-16x16.png">
+	<link rel="shortcut icon" type="image/x-icon" href="img/lht-icon-16x16.png">
 </head>
 
 <body>
-  <div>
-    <h1> Welcome to MyCinema</h1>
-    <p>This application allows you to pull information about countless movies
-    by accessing an API created by Luke Thompson.</p>
-  </div>
+	<div>
+		<h1> Welcome to MyCinema</h1>
+		<p>This application allows you to pull information about countless movies
+			by accessing an API created by Luke Thompson.</p>
+		</div>
+		<h2> API Endpoints </h2>
+		<div>
+			<h3> List All Movies </h3>
+			<p>
+				Description: This endpoint will GET a list of all movies in the database.
+				This list will be displayed to the requester.
+				<br/>
+				URL: "/movies"
+				<br/>
+				Method Type: GET
+				<br/>
+				Parameters: N/A
+				<br/>
+				Request Format: GET http://localhost:8080/movies
+				<br/>
+				Response Format: JSON Array of Movies (or maybe HTML movie list?)
+				<br/>
+				Example Request: GET http://localhost:8080/movies
+				<br/>
+				Example Response: <br/>
+				[<br/>
+				{ title: Wall-E,<br/>
+				director: Andrew Stanton},<br/>
+				{ ... }<br/>
+				]
+			</p>
+			<h3> Read Movie Data </h3>
+			<p>
+				Description: GET detailed information on a single movie.
+				<br/>
+				URL: "/movies/:title"
+				<br/>
+				Method Type: GET
+				<br/>
+				Parameters: Title - this is the movie to return details on.
+				<br/>
+				Request Format: GET http://localhost:8080/movies/[title]
+				<br/>
+				Response Format: List of details about the movie requested.
+				<br/>
+				Example Request: GET http://localhost:8080/movies/Catch%20Me%20If%20You%20Can
+				<br/>
+				Example Response: <br/>
+				<span id=read-movie-data-example-response>
+				__Title: Catch Me If You Can
+				__Description: Follow Detective Carl Hanratty (played by Tom Hanks) as he
+				pursues one of the most notorious counterfeiters in US history -
+				Frank Abignale Jr.<br/>
+				__Genre: Crime Fiction <br/>
+				__Director: <br/>
+				__Image URL: <br/>
+				__Featured: Yes
+			</span>
+			</p>
+			<h3> Update Movie Favorite </h3>
+			<p>
+				Description: Adds a movie to a user's list of favorite movies.
+				<br/>
+				URL: "/:userId/favorites/:title/add"
+				<br/>
+				Method Type: POST
+				<br/>
+				Parameters: userId - this is the currently logged in user's ID.<br/>
+				title - this is the movie to be added to favorites.
+				<br/>
+				Request Format: POST http://localhost:8080/[userId]/favorites/[title]/add
+				<br/>
+				Response Format: [title] has been added to your favorites!
+				<br/>
+				Example Request: POST http://localhost:8080/12231996/favorites/Up/add
+				<br/>
+				Example Response: "Up" has been added to your favorites!
+			</p>
+			<h3> Update Movie Unfavorite </h3>
+			<p>
+				Description: Removes a movie from a user's list of favorite movies.
+				<br/>
+				URL: "/:userId/favorites/:title/remove"
+				<br/>
+				Method Type: DELETE
+				<br/>
+				Parameters: userId - this is the currently logged in user's ID.<br/>
+				title - this is the movie to be removed from favorites.
+				<br/>
+				Request Format: DELETE http://localhost:8080/[userId]/favorites/[title]/remove
+				<br/>
+				Response Format: [title] has been removed from your favorites.
+				<br/>
+				Example Request: DELETE http://localhost:8080/12231996/favorites/Up/remove
+				<br/>
+				Example Response: "Up" has been removed from your favorites.
+			</p>
+			<h3> Read Genre Data </h3>
+			<p>
+				Description: Tells the user more about a particular film genre.
+				<br/>
+				URL: "/genres/:genre"
+				<br/>
+				Method Type: GET
+				<br/>
+				Parameters: Genre - this is the genre that the user wants more info on.
+				<br/>
+				Request Format: GET http://localhost:8080/genres/[genre]
+				<br/>
+				Response Format: Serve static HTML with details on the genre requested.
+				<br/>
+				Example Request: GET http://localhost:8080/genres/horror
+				<br/>
+				Example Response: Redirects user to webpage with info on Horror genre.
+			</p>
+			<h3> Read Director Data </h3>
+			<p>
+				Description:
+				<br/>
+				URL: "directors/:director"
+				<br/>
+				Method Type: GET
+				<br/>
+				Parameters: director - this is the director that the user wants more info on.
+				<br/>
+				Request Format: GET http://localhost:8080/directors/[director]
+				<br/>
+				Response Format: JSON Object with info about the director.
+				<br/>
+				Example Request: GET http://localhost:8080/directors/Steven%20Spielberg
+				<br/>
+				Example Response: ...
+			</p>
+			<h3> Create User </h3>
+			<p>
+				Description: Creates a new user account registered with the site.
+				<br/>
+				URL: "/createUser"
+				<br/>
+				Method Type: POST
+				<br/>
+				Parameters:
+				<br/>
+				Request Format: POST http://localhost:8080/createUser <br/>
+				The body of the request must contain a JSON Object cotaining at least a
+				value for the key "username".
+				<br/>
+				Response Format: Account successfully created for [user].
+				<br/>
+				Example Request: POST http://localhost:8080/createUser
+				<br/>
+				Example Response: Account successfully created for ElThompson.
+			</p>
+			<h3> Update Username </h3>
+			<p>
+				Description: Updates the username for the currently logged in user.
+				<br/>
+				URL: "/:userId/:name"
+				<br/>
+				Method Type: POST
+				<br/>
+				Parameters: userId - this is the ID of the currently logged in user.
+				<br/>
+				Request Format: POST http://localhost:8080/[userId]/[name]
+				<br/>
+				Response Format: Your username has successfully been updated to [name].
+				<br/>
+				Example Request: POST http://localhost:8080/12231996/Luke%20Thompson
+				<br/>
+				Example Response: Your username has successfully been updated to Luke Thompson.
+			</p>
+			<h3> Delete User </h3>
+			<p>
+				Description: Deletes the account of the currently logged in user.
+				<br/>
+				URL: "/:userId/delete"
+				<br/>
+				Method Type: DELETE
+				<br/>
+				Parameters: userId - this is the ID of the currently logged in user.
+				<br/>
+				Request Format: DELETE http://localhost:8080/[userId]/delete
+				<br/>
+				Response Format: Your account was successfully deleted.
+				<br/>
+				Example Request: DELETE http://localhost:8080/12231996/delete
+				<br/>
+				Example Response: Your account was successfully deleted.
+			</p>
+		</div>
 </body>
 </html>
