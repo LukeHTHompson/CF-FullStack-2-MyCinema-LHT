@@ -72,39 +72,39 @@
 			<p>
 				Description: Adds a movie to a user's list of favorite movies.
 				<br/>
-				URL: "/:userId/favorites/:title/add"
+				URL: "/users/:username/favorites/:title"
 				<br/>
 				Method Type: POST
 				<br/>
-				Parameters: userId - this is the currently logged in user's ID.<br/>
+				Parameters: username - this is the username of the target user.<br/>
 				title - this is the movie to be added to favorites.
 				<br/>
-				Request Format: POST http://localhost:8080/[userId]/favorites/[title]/add
+				Request Format: POST http://localhost:8080/users/[username]/favorites/[title]
 				<br/>
-				Response Format: [title] has been added to your favorites!
+				Response Format: [title] has been added to [username]'s favorites!
 				<br/>
-				Example Request: POST http://localhost:8080/12231996/favorites/Up/add
+				Example Request: POST http://localhost:8080/users/LHT/favorites/Up
 				<br/>
-				Example Response: "Up" has been added to your favorites!
+				Example Response: "Up" has been added to LHT's favorites!
 			</p>
 			<h3> Update Movie Unfavorite </h3>
 			<p>
 				Description: Removes a movie from a user's list of favorite movies.
 				<br/>
-				URL: "/:userId/favorites/:title/remove"
+				URL: "/users/:username/favorites/:title"
 				<br/>
 				Method Type: DELETE
 				<br/>
-				Parameters: userId - this is the currently logged in user's ID.<br/>
+				Parameters: username - this is the username of the target user.<br/>
 				title - this is the movie to be removed from favorites.
 				<br/>
-				Request Format: DELETE http://localhost:8080/[userId]/favorites/[title]/remove
+				Request Format: DELETE http://localhost:8080/users/[username]/favorites/[title]
 				<br/>
-				Response Format: [title] has been removed from your favorites.
+				Response Format: [title] has been removed from [username]'s favorites.
 				<br/>
-				Example Request: DELETE http://localhost:8080/12231996/favorites/Up/remove
+				Example Request: DELETE http://localhost:8080/users/LHT/favorites/Up
 				<br/>
-				Example Response: "Up" has been removed from your favorites.
+				Example Response: "Up" has been removed from LHT's favorites.
 			</p>
 			<h3> Read Genre Data </h3>
 			<p>
@@ -146,7 +146,7 @@
 			<p>
 				Description: Creates a new user account registered with the site.
 				<br/>
-				URL: "/createUser"
+				URL: "/users"
 				<br/>
 				Method Type: POST
 				<br/>
@@ -166,13 +166,14 @@
 			<p>
 				Description: Updates the username for the currently logged in user.
 				<br/>
-				URL: "/:userId/:name"
+				URL: "/users/:username"
 				<br/>
 				Method Type: POST
 				<br/>
-				Parameters: userId - this is the ID of the currently logged in user.
+				Parameters: username - the specific user whose name should be changed
 				<br/>
-				Request Format: POST http://localhost:8080/[userId]/[name]
+				Request Format: POST http://localhost:8080/[userId]/[name] <br/>
+				The body of the message should contain update info for the username.
 				<br/>
 				Response Format: Your username has successfully been updated to [name].
 				<br/>
@@ -184,11 +185,11 @@
 			<p>
 				Description: Deletes the account of the currently logged in user.
 				<br/>
-				URL: "/:userId/delete"
+				URL: "/users/:username"
 				<br/>
 				Method Type: DELETE
 				<br/>
-				Parameters: userId - this is the ID of the currently logged in user.
+				Parameters: username - this is the name of the account to delete.
 				<br/>
 				Request Format: DELETE http://localhost:8080/[userId]/delete
 				<br/>

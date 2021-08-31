@@ -70,13 +70,13 @@ app.get("/movies/:title", (req, res) => {
 });
 
 // Adds a movie to a user's list of favorites.
-app.post("/:userId/favorites/:title/add", (req, res) => {
-  res.send("POST a new movie to your list of favorites by title")
+app.post("/users/:username/favorites/:title", (req, res) => {
+  res.send("POST a new movie to a user's list of favorites by title")
 });
 
 // Removes a movie from a user's list of favorites.
-app.delete("/:user/favorites/:title/remove", (req, res) => {
-  res.send("DELETE an existing movie from your list of favorites by title")
+app.delete("/users/:username/favorites/:title", (req, res) => {
+  res.send("DELETE an existing movie from a user's list of favorites by title")
 });
 
 // Returns info on a specific film genre.
@@ -90,17 +90,17 @@ app.get("/directors/:director", (req, res) => {
 });
 
 // Create your own account with a custom username.
-app.post("/createUser", (req, res) => {
+app.post("/users", (req, res) => {
   res.send("POST a new account to the site with info in your request body")
 });
 
 // Update your own username.
-app.post("/:userId/:name", (req, res) => {
-  res.send("POST an update to your username")
+app.put("/users/:username", (req, res) => {
+  res.send("PUT an update to your username")
 });
 
 // Delete your own account.
-app.delete("/:userId/delete", (req, res) => {
+app.delete("/users/:username", (req, res) => {
   res.send("DELETE your own account")
 });
 
