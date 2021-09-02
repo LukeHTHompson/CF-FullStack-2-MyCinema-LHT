@@ -41,7 +41,7 @@ app.get("/movies", (req, res) => {
 
 // Returns info on a particular movie via title.
 app.get("/movies/:Title", (req, res) => {
-  Movies.findOne({ Title: req.params.Title})
+  Movies.findOne({ Title: req.params.Title })
   .then( (movie) => {
     res.status(201).json(movie);
   })
