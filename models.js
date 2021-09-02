@@ -1,7 +1,7 @@
 /* eslint-disable */
 const mongoose = require("mongoose");
 
-let movieSchema = mongoose.Schema({
+let MovieSchema = mongoose.Schema({
   Title: {type: String, required: true},
   Description: {type: String, required: true},
   Genre: {
@@ -17,7 +17,7 @@ let movieSchema = mongoose.Schema({
   Featured: Boolean
 });
 
-let userSchema = mongoose.Schema({
+let UserSchema = mongoose.Schema({
   Username: {type: String, required: true},
   Password: {type: String, required: true},
   Email: {type: String, required: true},
@@ -25,8 +25,8 @@ let userSchema = mongoose.Schema({
   FavoriteMovies: [{type: mongoose.Schema.Types.ObjectId, ref: "Movie"}]
 });
 
-let Movie = mongoose.model("Movie", movieSchema)
-let User = mongoose.model("User", userSchema);
+let Movie = mongoose.model("Movie", MovieSchema)
+let User = mongoose.model("User", UserSchema);
 
 module.exports.Movie = Movie;
 module.exports.User = User;

@@ -32,6 +32,7 @@ app.get("/movies", (req, res) => {
   Movies.find()
   .then( (movies) => {
     res.status(201).json(movies);
+    console.log(movies);
   })
   .catch( (err) => {
     console.error(err);
@@ -107,6 +108,12 @@ app.get("/directors/:Director", (req, res) => {
       console.error(err);
       res.status(500).send("Error: " + err);
     })
+});
+
+app.post("/test", (req, res) => {
+  Movies.create({Title: "Test", Description: "Test Description"})
+  .then( (movie) => {res.status(201).json(movie); console.log(Movies);})
+  .catch( (err) => {res.status(500).send(err)});
 });
 
 // Create your own account with a custom username.
