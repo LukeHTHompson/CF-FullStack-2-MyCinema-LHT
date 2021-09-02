@@ -19,7 +19,7 @@
 			<h3> List All Movies </h3>
 			<p>
 				Description: This endpoint will GET a list of all movies in the database.
-				This list will be displayed to the requester.
+				This list will be displayed to the requester in JSON format.
 				<br/>
 				URL: "/movies"
 				<br/>
@@ -29,22 +29,22 @@
 				<br/>
 				Request Format: GET http://localhost:8080/movies
 				<br/>
-				Response Format: JSON Array of Movies (or maybe HTML movie list?)
+				Response Format: JSON of all movies in database
 				<br/>
 				Example Request: GET http://localhost:8080/movies
 				<br/>
 				Example Response: <br/>
-				[<br/>
-				{ title: Wall-E,<br/>
-				director: Andrew Stanton},<br/>
-				{ ... }<br/>
-				]
+				{_id: ...
+				Title: ...,<br/>
+				Description: ...,<br/>
+				etc.},<br/>
+				{_id: ... etc.}
 			</p>
 			<h3> Read Movie Data </h3>
 			<p>
 				Description: GET detailed information on a single movie.
 				<br/>
-				URL: "/movies/:title"
+				URL: "/movies/:Title"
 				<br/>
 				Method Type: GET
 				<br/>
@@ -52,51 +52,53 @@
 				<br/>
 				Request Format: GET http://localhost:8080/movies/[title]
 				<br/>
-				Response Format: List of details about the movie requested.
+				Response Format: Returns details of a particular movie in JSON format. This includes _id, Title, DEscription, Genre (Name + Description), Director (Name + Bio + Birth + Death), ImagePath, Featured, and Actors.
 				<br/>
 				Example Request: GET http://localhost:8080/movies/Catch%20Me%20If%20You%20Can
 				<br/>
 				Example Response: <br/>
 				<span id=read-movie-data-example-response>
-				__Title: Catch Me If You Can
-				__Description: Follow Detective Carl Hanratty (played by Tom Hanks) as he
-				pursues one of the most notorious counterfeiters in US history -
-				Frank Abignale Jr.<br/>
-				__Genre: Crime Fiction <br/>
-				__Director: <br/>
-				__Image URL: <br/>
-				__Featured: Yes
+					{_id: ...
+					Title: ...,<br/>
+					Description: ...,<br/>
+					etc.}<br/>
 			</span>
 			</p>
 			<h3> Update Movie Favorite </h3>
 			<p>
 				Description: Adds a movie to a user's list of favorite movies.
 				<br/>
-				URL: "/users/:username/favorites/:title"
+				URL: "/users/:Username/favorites/:MovieID"
 				<br/>
 				Method Type: POST
 				<br/>
-				Parameters: username - this is the username of the target user.<br/>
-				title - this is the movie to be added to favorites.
+				Parameters: Username - this is the username of the target user.<br/>
+				MovieID - this is the _id of the movie to be added to favorites.
 				<br/>
-				Request Format: POST http://localhost:8080/users/[username]/favorites/[title]
+				Request Format: POST http://localhost:8080/users/[username]/favorites/[MovieID]
 				<br/>
-				Response Format: [title] has been added to [username]'s favorites!
+				Response Format: Returns an updated JSON with all details on the user specified.
 				<br/>
 				Example Request: POST http://localhost:8080/users/LHT/favorites/Up
 				<br/>
-				Example Response: "Up" has been added to LHT's favorites!
+				Example Response: <br/>
+				_id: ... <br/>
+				Username: ... <br/>
+				Password: ... <br/>
+				Email: ... <br/>
+				Birthday: ... <br/>
+				FavoriteMovies: [..., MovieID]
 			</p>
 			<h3> Update Movie Unfavorite </h3>
 			<p>
 				Description: Removes a movie from a user's list of favorite movies.
 				<br/>
-				URL: "/users/:username/favorites/:title"
+				URL: "/users/:Username/favorites/:MovieID"
 				<br/>
 				Method Type: DELETE
 				<br/>
-				Parameters: username - this is the username of the target user.<br/>
-				title - this is the movie to be removed from favorites.
+				Parameters: Username - this is the username of the target user.<br/>
+				MovieID - this is the _id of the movie to be removed from favorites.
 				<br/>
 				Request Format: DELETE http://localhost:8080/users/[username]/favorites/[title]
 				<br/>
@@ -104,7 +106,14 @@
 				<br/>
 				Example Request: DELETE http://localhost:8080/users/LHT/favorites/Up
 				<br/>
-				Example Response: "Up" has been removed from LHT's favorites.
+				Example Response: <br/>
+				Example Response: <br/>
+				{_id: ... <br/>
+				Username: ... <br/>
+				Password: ... <br/>
+				Email: ... <br/>
+				Birthday: ... <br/>
+				FavoriteMovies: [will not include MovieID]}
 			</p>
 			<h3> Read Genre Data </h3>
 			<p>
@@ -118,29 +127,35 @@
 				<br/>
 				Request Format: GET http://localhost:8080/genres/[genre]
 				<br/>
-				Response Format: Serve static HTML with details on the genre requested.
+				Response Format: Returns a JSON with details on the specified Genre.
 				<br/>
 				Example Request: GET http://localhost:8080/genres/horror
 				<br/>
-				Example Response: Redirects user to webpage with info on Horror genre.
+				Example Response:<br/>
+				{Name: ..., <br/>
+				Description: ...}
 			</p>
 			<h3> Read Director Data </h3>
 			<p>
 				Description:
 				<br/>
-				URL: "directors/:director"
+				URL: "directors/:Director"
 				<br/>
 				Method Type: GET
 				<br/>
-				Parameters: director - this is the director that the user wants more info on.
+				Parameters: Director - this is the full name of the director that the user wants more info on.
 				<br/>
-				Request Format: GET http://localhost:8080/directors/[director]
+				Request Format: GET http://localhost:8080/directors/[Director]
 				<br/>
-				Response Format: JSON Object with info about the director.
+				Response Format: Returns a JSON with details about the specified director.
 				<br/>
 				Example Request: GET http://localhost:8080/directors/Steven%20Spielberg
 				<br/>
-				Example Response: ...
+				Example Response:<br/>
+				{Name: ..., <br/>
+				Bio: ..., <br/>
+				Birth: ... <br/>
+				Death: ...}
 			</p>
 			<h3> Create User </h3>
 			<p>
@@ -150,54 +165,77 @@
 				<br/>
 				Method Type: POST
 				<br/>
-				Parameters:
+				Parameters: Body of the request must contain info on new user in this format: <br/>
+				{Username: String (required),<br/>
+  			Password: String (required),<br/>
+  			Email: String (required),<br/>
+  			Birthday: Date}<br/>
 				<br/>
-				Request Format: POST http://localhost:8080/createUser <br/>
-				The body of the request must contain a JSON Object cotaining at least a
-				value for the key "username".
+				Request Format: POST http://localhost:8080/users <br/>
+				The body of the request must contain a JSON Object as seen above.
 				<br/>
-				Response Format: Account successfully created for [user].
+				Response Format: Returns a JSON with the details logged to the database for the new user.
 				<br/>
-				Example Request: POST http://localhost:8080/createUser
+				Example Request: POST http://localhost:8080/users <br/>
+				Request Body -<br/>
+				{Username: "LHT",<br/>
+				Password: "K00Ldude",<br/>
+				Email: "H0Tsh0t@gmail.com",<br/>
+				Birthday: "1996-12-23"}<br/>
 				<br/>
-				Example Response: Account successfully created for ElThompson.
+				Example Response:<br/>
+				{_id: ...,<br/>
+				Username: "LHT",<br/>
+				Password: "K00Ldude",<br/>
+				Email: "H0Tsh0t@gmail.com",<br/>
+				Birthday: "1996-12-23"}
 			</p>
-			<h3> Update Username </h3>
+			<h3> Update User Info </h3>
 			<p>
-				Description: Updates the username for the currently logged in user.
+				Description: Updates the info for the specified user.
 				<br/>
-				URL: "/users/:username"
+				URL: "/users/:Username"
 				<br/>
 				Method Type: POST
 				<br/>
-				Parameters: username - the specific user whose name should be changed
+				Parameters: Username - the specific user whose info should be changed.<br/>
+				The body of the request is a JSON containing the info to be used (Username, Password, Email, Birthday):<br/>
+				{Username: String (required),<br/>
+  			Password: String (required),<br/>
+  			Email: String (required),<br/>
+  			Birthday: Date}<br/>
 				<br/>
-				Request Format: POST http://localhost:8080/[userId]/[name] <br/>
+				Request Format: POST http://localhost:8080/users/[Username] <br/>
 				The body of the message should contain update info for the username.
 				<br/>
-				Response Format: Your username has successfully been updated to [name].
+				Response Format: Returns the updated JSON with details on the specified user's new info.
 				<br/>
-				Example Request: POST http://localhost:8080/12231996/Luke%20Thompson
+				Example Request: POST http://localhost:8080/users/Luke%20Thompson
 				<br/>
-				Example Response: Your username has successfully been updated to Luke Thompson.
+				Example Response:<br/>
+				{_id: ...,<br/>
+				Username: ...,<br/>
+				Password: ...,<br/>
+				Email: ...,<br/>
+				Birthday: ...}<br/>
 			</p>
 			<h3> Delete User </h3>
 			<p>
 				Description: Deletes the account of the currently logged in user.
 				<br/>
-				URL: "/users/:username"
+				URL: "/users/:Username"
 				<br/>
 				Method Type: DELETE
 				<br/>
-				Parameters: username - this is the name of the account to delete.
+				Parameters: Username - this is the name of the account to delete.
 				<br/>
-				Request Format: DELETE http://localhost:8080/[userId]/delete
+				Request Format: DELETE http://localhost:8080/users/[Username]
 				<br/>
-				Response Format: Your account was successfully deleted.
+				Response Format: [Username] was successfully deleted.
 				<br/>
-				Example Request: DELETE http://localhost:8080/12231996/delete
+				Example Request: DELETE http://localhost:8080/users/LHT
 				<br/>
-				Example Response: Your account was successfully deleted.
+				Example Response: LHT was successfully deleted.
 			</p>
 		</div>
 </body>
