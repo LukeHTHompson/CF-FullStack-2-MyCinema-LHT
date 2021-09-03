@@ -110,13 +110,14 @@ app.get("/directors/:Director", (req, res) => {
     })
 });
 
-app.post("/test", (req, res) => {
-  Movies.create({Title: "Test", Description: "Test Description"})
-  .then( (movie) => {res.status(201).json(movie); console.log(Movies);})
-  .catch( (err) => {res.status(500).send(err)});
-});
+// TEST endpoint used for troubleshooting. Adds a new movie to collection.
+// app.post("/test", (req, res) => {
+//   Movies.create({Title: "Test", Description: "Test Description"})
+//   .then( (movie) => {res.status(201).json(movie); console.log(Movies);})
+//   .catch( (err) => {res.status(500).send(err)});
+// });
 
-// Create your own account with a custom username.
+// Create your own account with a unique username.
 app.post("/users", (req, res) => {
   Users.findOne({ Username: req.body.Username })
     .then( (name) => {
@@ -146,7 +147,7 @@ app.post("/users", (req, res) => {
     });
 });
 
-// Update user info.
+// Update user info for specified user via the info in the request body.
 app.put("/users/:Username", (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.Username }, { $set:
       {
@@ -168,7 +169,7 @@ app.put("/users/:Username", (req, res) => {
   });
 });
 
-// Delete your own account.
+// Delete specified user's account.
 app.delete("/users/:Username", (req, res) => {
   Users.findOneAndRemove({ Username: req.params.Username })
     .then( (user) => {
