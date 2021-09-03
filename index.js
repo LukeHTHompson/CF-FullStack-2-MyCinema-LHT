@@ -118,7 +118,7 @@ app.post("/test", (req, res) => {
 
 // Create your own account with a custom username.
 app.post("/users", (req, res) => {
-  Users.findone({ Username: req.body.Username })
+  Users.findOne({ Username: req.body.Username })
     .then( (name) => {
       // 'name' is a boolean, true if we found that username in the DB, else false
       if (name) {
@@ -127,7 +127,7 @@ app.post("/users", (req, res) => {
         Users
           .create({
             Username: req.body.Username,
-            Password: req.body.Passwaord,
+            Password: req.body.Password,
             Email: req.body.Email,
             Birthday: req.body.Birthday
           })
@@ -148,9 +148,9 @@ app.post("/users", (req, res) => {
 
 // Update user info.
 app.put("/users/:Username", (req, res) => {
-  Users.findOneAndUpdate({ Username: req.params.Username },
-  { $set:
-      { Username: req.body.Username,
+  Users.findOneAndUpdate({ Username: req.params.Username }, { $set:
+      {
+        Username: req.body.Username,
         Password: req.body.Password,
         Email: req.body.Email,
         Birthday: req.body.Birthday
