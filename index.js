@@ -5,7 +5,12 @@ const Models = require("./models.js");
 const Movies = Models.Movie;
 const Users = Models.User;
 
-mongoose.connect("mongodb://localhost:27017/myCinemaDB", { useNewUrlParser: true, useUnifiedTopology: true });
+// Local DB Connection
+// mongoose.connect("mongodb://localhost:27017/myCinemaDB", { useNewUrlParser: true, useUnifiedTopology: true });
+// Online DB Connection
+mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+
+
 
 const express = require("express"),
   morgan = require("morgan"),
