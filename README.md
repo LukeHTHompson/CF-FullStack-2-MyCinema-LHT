@@ -92,16 +92,16 @@ myCinema is comprised of a made-from-scratch API interacting with an external no
 
  
 ## Dependencies:
-*bcrypt
-*body-parser
-*cors
-*express
-*express-validator
-*git
-*jsonwebtoken
-*lodash
-*mongoose
-*morgan
-*passport
-*passport-jwt
-*passport-local
+* bcrypt
+* body-parser
+* cors
+* express
+* express-validator
+* git
+* jsonwebtoken
+* lodash
+* mongoose
+* morgan
+* passport
+* passport-jwt
+* passport-local
