@@ -10,74 +10,74 @@ myCinema is comprised of a made-from-scratch API interacting with an external no
 
 ##Endpoints:
 1. List All Movies (GET "/movies")
-  1. This endpoint will GET a list of all movies in the database. This list will be displayed to the requester in JSON format.
-  1. Parameters: None
-  1. Request:
+  * This endpoint will GET a list of all movies in the database. This list will be displayed to the requester in JSON format.
+  * Parameters: None
+  * Request:
   !()!
-  1. Response:
+  * Response:
   !()!
 1. Read Movie Data (GET "/movies/:Title")
-  1.
-  1. Parameters: Title - Title of the film to be returned
-  1. Request:
+  *
+  * Parameters: Title - Title of the film to be returned
+  * Request:
   !()!
-  1. Response:
+  * Response:
   !()!
 1. Update Movie Favorite (POST "/users/:Username/favorites/:MovieID")
-  1.
-  1. Parameters: Username - name of the user whose favorites list is affected | MovieID - unique database identifier of movie to be added
-  1. Request:
+  *
+  * Parameters: Username - name of the user whose favorites list is affected | MovieID - unique database identifier of movie to be added
+  * Request:
   !()!
-  1. Response:
+  * Response:
   !()!
 1. Update Movie Unfavorite (DELETE "/users/:Username/favorites/:MovieID")
-  1.
-  1. Parameters: Username - name of the user whose favorites list is affected | MovieID - unique database identifier of movie to be removed
-  1. Request:
+  *
+  * Parameters: Username - name of the user whose favorites list is affected | MovieID - unique database identifier of movie to be removed
+  * Request:
   !()!
-  1. Response:
+  * Response:
   !()!
 1. Read Genre Data (GET "/genres/:Genre")
-  1.
-  1. Parameters: Genre - Title of the genre to be returned
-  1. Request:
+  *
+  * Parameters: Genre - Title of the genre to be returned
+  * Request:
   !()!
-  1. Response:
+  * Response:
   !()!
 1. Read Director Data (GET "/directors/:Director")
-  1.
-  1. Parameters: Director - Name of the director to be returned
-  1. Request:
+  *
+  * Parameters: Director - Name of the director to be returned
+  * Request:
   !()!
-  1. Response:
+  * Response:
   !()!
 1. Create User (POST "/users")
-  1.
-  1. Parameters: None
-  1. Request:
+  *
+  * Parameters: None
+  * Request:
   !()!
-  1. Response:
+  * Response:
   !()!
 1. User Login (POST "/login?Username=&Password=)
-  1.
-  1. Parameters: Username and Password of the account being logged into
-  1. Request:
+  *
+  * Parameters: Username and Password of the account being logged into
+  * Request:
   !()!
-  1. Response:
+  * Response:
   !()!
 1. Update User Info (PUT "/users/:Username")
-  1.
-  1. Parameters: Username - name of the user whose info should be updated
-  1. Request:
+  *
+  * Parameters: Username - name of the user whose info should be updated
+  * Request:
   !()!
-  1. Response:
+  * Response:
   !()!
 1. Delete User (DELETE "/users/:Username")
-  1.
-  1. Parameters: Username - name of the user to be deleted
-  1. Request:
+  *
+  * Parameters: Username - name of the user to be deleted
+  * Request:
   !()!
-  1. Response:
+  * Response:
   !()!
 
  
