@@ -142,13 +142,6 @@ app.get("/directors/:Director", passport.authenticate("jwt", { session: false })
   })
 });
 
-// POST endpoint used for troubleshooting. Adds a new movie to collection.
-// app.post("/test", passport.authenticate("jwt", { session: false }), (req, res) => {
-//   Movies.create({Title: "Test", Description: "Test Description"})
-//   .then( (movie) => {res.status(201).json(movie); console.log(Movies);})
-//   .catch( (err) => {res.status(500).send(err)});
-// });
-
 // Create your own account with a unique username. No Auth needed.
 app.post("/users",
   [
