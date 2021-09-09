@@ -9,70 +9,70 @@ myCinema is comprised of a made-from-scratch API interacting with an external no
 
 
 ##Endpoints:
-1. List All Movies (GET "/movies")
+###List All Movies (GET "/movies")
   * This endpoint will GET a list of all movies in the database. This list will be displayed to the requester in JSON format.
   * Parameters: None
   * Request:
   !()!
   * Response:
   !()!
-1. Read Movie Data (GET "/movies/:Title")
+###Read Movie Data (GET "/movies/:Title")
   *
   * Parameters: Title - Title of the film to be returned
   * Request:
   !()!
   * Response:
   !()!
-1. Update Movie Favorite (POST "/users/:Username/favorites/:MovieID")
+###Update Movie Favorite (POST "/users/:Username/favorites/:MovieID")
   *
   * Parameters: Username - name of the user whose favorites list is affected | MovieID - unique database identifier of movie to be added
   * Request:
   !()!
   * Response:
   !()!
-1. Update Movie Unfavorite (DELETE "/users/:Username/favorites/:MovieID")
+###Update Movie Unfavorite (DELETE "/users/:Username/favorites/:MovieID")
   *
   * Parameters: Username - name of the user whose favorites list is affected | MovieID - unique database identifier of movie to be removed
   * Request:
   !()!
   * Response:
   !()!
-1. Read Genre Data (GET "/genres/:Genre")
+###Read Genre Data (GET "/genres/:Genre")
   *
   * Parameters: Genre - Title of the genre to be returned
   * Request:
   !()!
   * Response:
   !()!
-1. Read Director Data (GET "/directors/:Director")
+###Read Director Data (GET "/directors/:Director")
   *
   * Parameters: Director - Name of the director to be returned
   * Request:
   !()!
   * Response:
   !()!
-1. Create User (POST "/users")
+###Create User (POST "/users")
   *
   * Parameters: None
   * Request:
   !()!
   * Response:
   !()!
-1. User Login (POST "/login?Username=&Password=)
+###User Login (POST "/login?Username=&Password=)
   *
   * Parameters: Username and Password of the account being logged into
   * Request:
   !()!
   * Response:
   !()!
-1. Update User Info (PUT "/users/:Username")
+###Update User Info (PUT "/users/:Username")
   *
   * Parameters: Username - name of the user whose info should be updated
   * Request:
   !()!
   * Response:
   !()!
-1. Delete User (DELETE "/users/:Username")
+###Delete User (DELETE "/users/:Username")
   *
   * Parameters: Username - name of the user to be deleted
   * Request:
