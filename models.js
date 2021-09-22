@@ -34,8 +34,10 @@ UserSchema.methods.validatePassword = function(password) {
   return bcrypt.compareSync(password, this.Password);
 };
 
+
 let Movie = mongoose.model("Movie", MovieSchema)
 let User = mongoose.model("User", UserSchema);
+
 
 module.exports.Movie = Movie;
 module.exports.User = User;
