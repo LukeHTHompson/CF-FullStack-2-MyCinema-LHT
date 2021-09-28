@@ -58,7 +58,7 @@ app.get("/", (req, res) => {
 });
 
 // Returns a list of all movies in the database.
-app.get("/movies", /* passport.authenticate("jwt", { session: false }) ,*/(req, res) => {
+app.get("/movies", passport.authenticate("jwt", { session: false }) ,(req, res) => {
   Movies.find()
     .then((movies) => {
       res.status(200).json(movies);
