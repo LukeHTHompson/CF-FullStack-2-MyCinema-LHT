@@ -185,6 +185,43 @@ app.post("/users",
       });
   });
 
+app.post("/login",
+  [
+    check("Username", "Username is required.").isLength({ min: 5 }),
+    check("Username", "Username contains non alphanumeric characters - not allowed.").isAlphanumeric(),
+  ],
+  (req, res) => {
+
+    // check validation object for errors
+    let errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
+
+    let hashedPassword = Users.hashPassword(req.body.Password);
+    Users.findOne({ Username: req.body.Username })
+      .then((name) => {
+        // 'name' is a boolean, true if we found that username in the DB, else false
+        if (!name) {
+          return res.status(400).send("User '" + req.body.Username + "' does not exist.");
+        } else {
+          Users.findOne({ Username: req.body.Username, Password: hashedPassword })
+            .then((user) => { res.status(201).json(user) })
+            // handle any errors in user creation attempt
+            .catch((error) => {
+              console.error(error);
+              res.status(500).send("Error: " + error);
+            })
+        }
+      })
+      // handle any errors in DB search attempt
+      .catch((error) => {
+        console.error(error);
+        res.status(500).send("Error: " + error);
+      });
+  }
+)
+
 // Update user info for specified user via the info in the request body.
 app.put("/users/:Username",
   [
