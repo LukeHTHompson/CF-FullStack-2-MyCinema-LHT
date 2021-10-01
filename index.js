@@ -57,6 +57,7 @@ app.get("/", (req, res) => {
   res.send("Welcome to MyCinema!");
 });
 
+
 // Returns a list of all movies in the database.
 app.get("/movies", passport.authenticate("jwt", { session: false }) ,(req, res) => {
   Movies.find()
@@ -70,6 +71,7 @@ app.get("/movies", passport.authenticate("jwt", { session: false }) ,(req, res) 
     });
 });
 
+
 // Returns info on a particular movie via title.
 app.get("/movies/:Title", passport.authenticate("jwt", { session: false }), (req, res) => {
   Movies.findOne({ Title: req.params.Title })
@@ -81,6 +83,7 @@ app.get("/movies/:Title", passport.authenticate("jwt", { session: false }), (req
       res.status(500).send("Error: " + err);
     })
 });
+
 
 // Adds a movie by databse ID to a user's list of favorites.
 app.post("/users/:Username/favorites/:MovieID", passport.authenticate("jwt", { session: false }), (req, res) => {
@@ -98,6 +101,7 @@ app.post("/users/:Username/favorites/:MovieID", passport.authenticate("jwt", { s
   );
 });
 
+
 // Removes a movie by database ID from a user's list of favorites.
 app.delete("/users/:Username/favorites/:MovieID", passport.authenticate("jwt", { session: false }), (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.Username },
@@ -114,6 +118,7 @@ app.delete("/users/:Username/favorites/:MovieID", passport.authenticate("jwt", {
   );
 });
 
+
 // Returns info on a specific film genre.
 app.get("/genres/:Genre", passport.authenticate("jwt", { session: false }), (req, res) => {
   Movies.find({ "Genre.Name": req.params.Genre },
@@ -127,6 +132,7 @@ app.get("/genres/:Genre", passport.authenticate("jwt", { session: false }), (req
     })
 });
 
+
 // Returns data on a specific director.
 app.get("/directors/:Director", passport.authenticate("jwt", { session: false }), (req, res) => {
   Movies.find({ "Director.Name": req.params.Director },
@@ -139,6 +145,7 @@ app.get("/directors/:Director", passport.authenticate("jwt", { session: false })
       res.status(500).send("Error: " + err);
     })
 });
+
 
 // Create your own account with a unique username. No Auth needed.
 app.post("/users",
@@ -185,7 +192,9 @@ app.post("/users",
       });
   });
 
+
 // app.post("/login") logic found in auth.js
+
 
 // Update user info for specified user via the info in the request body.
 app.put("/users/:Username",
@@ -225,6 +234,7 @@ app.put("/users/:Username",
       });
   });
 
+
 // Delete specified user's account.
 app.delete("/users/:Username", passport.authenticate("jwt", { session: false }), (req, res) => {
   Users.findOneAndRemove({ Username: req.params.Username })
@@ -241,16 +251,13 @@ app.delete("/users/:Username", passport.authenticate("jwt", { session: false }),
     });
 });
 
-// Test for error handler
-// app.get("/error", (req, res) => {
-//   throw new Exception();
-// });
 
 // Handle any errors in the API as a whole
 app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   console.error(err.stack);
   res.status(500).send("Something broke!");
 });
+
 
 // Listen for requests
 const port = process.env.PORT || 8080;
