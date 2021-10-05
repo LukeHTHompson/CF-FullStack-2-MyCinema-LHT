@@ -1,5 +1,5 @@
 /* eslint-disable */
-const jwtSecret = "this is our jwt secret and it is very secret";
+const jwtSecret = "super secret jwt that nobody knows";
 
 const jwt = require("jsonwebtoken"),
   passport = require("passport");

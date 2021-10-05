@@ -44,7 +44,7 @@ passport.use(new LocalStrategy(
 // This will be the method used for all endpoints barring user creation/login.
 passport.use(new JWTStrategy(
   {jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
-  secretOrKey: "your_jwt_secret" },
+  secretOrKey: "super secret jwt that nobody knows" },
   (jwtPayload, callback) => {
     return Users.findById(jwtPayload._id)
       .then( (user) => {
