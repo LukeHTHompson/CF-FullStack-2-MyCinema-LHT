@@ -228,7 +228,7 @@ app.put("/users/:Username",
       return res.status(422).json({ errors: errors.array() });
     }
 
-    Users.findOneAndUpdate({$and:[{ Username: req.params.Username}, {Password: bcrypt.compareSync(req.body.Password, this.password) }]}, {
+    Users.findOneAndUpdate({ Username: req.params.Username}, {
       $set:
       {
         Username: req.body.Username,
