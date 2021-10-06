@@ -1,6 +1,8 @@
 /* eslint-disable */
 const mongoose = require("mongoose");
 const Models = require("./models.js");
+const bcrypt = require("bcrypt");
+
 
 const Movies = Models.Movie;
 const Users = Models.User;
@@ -226,7 +228,7 @@ app.put("/users/:Username",
       return res.status(422).json({ errors: errors.array() });
     }
 
-    Users.findOneAndUpdate({$and:[{ Username: req.params.Username}, {Password: req.body.Password }]}, {
+    Users.findOneAndUpdate({$and:[{ Username: req.params.Username}, {Password: bcrypt.hashSync(req.body.Password, 10) }]}, {
       $set:
       {
         Username: req.body.Username,
