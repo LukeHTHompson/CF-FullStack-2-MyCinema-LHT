@@ -226,7 +226,7 @@ app.put("/users/:Username",
       return res.status(422).json({ errors: errors.array() });
     }
 
-    Users.findOneAndUpdate({$and:[{ Username: req.params.Username, Password: req.body.Password }]}, {
+    Users.findOneAndUpdate({$and:[{ Username: req.params.Username}, {Password: req.body.Password }]}, {
       $set:
       {
         Username: req.body.Username,
