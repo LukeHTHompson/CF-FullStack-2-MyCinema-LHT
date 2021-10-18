@@ -166,7 +166,7 @@ app.post("/users",
     }
 
     let hashedPassword = Users.hashPassword(req.body.Password);
-    Users.findOne({ Username: req.body.Username })
+    Users.findOne({ Username: req.body.Username }).exec()
       .then((name) => {
         // 'name' is a boolean, true if we found that username in the DB, else false
         if (name) {
@@ -212,6 +212,8 @@ app.post("/users",
 
 
 // Update user info for specified user via the info in the request body.
+// Modify this API call to include both an existing and a new password.
+// Also need to verify that the username AND password both match an existing user.
 app.put("/users/:Username",
   [
     check("Username", "Username is required.").isLength({ min: 5 }),
