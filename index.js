@@ -197,7 +197,7 @@ app.post("/users",
 
   // Returns data on a specific user.
   app.get("/users/:Username", passport.authenticate("jwt", { session: false }), (req, res) => {
-    Users.find({ "Username": req.params.Username },
+    Users.find({ Username: req.params.Username },
       { "Username": 1, "Password": 1, "Email": 1, "Birthday": 1, "FavoriteMovies": 1 })
       .then((user) => {
         res.status(200).json(user);
