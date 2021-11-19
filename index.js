@@ -180,9 +180,8 @@ app.post("/users",
               Birthday: req.body.Birthday
             })
             .then((user) => {
-            console.log(req.body.Password)
-            { res.status(201).json(user) }
-          }
+              console.log(req.body.Password)
+              { res.status(201).json(user) }})
             // handle any errors in user creation attempt
             .catch((error) => {
               console.log(req.body.Password)
