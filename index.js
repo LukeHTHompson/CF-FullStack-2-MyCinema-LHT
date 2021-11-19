@@ -182,7 +182,6 @@ app.post("/users",
             .then((user) => { res.status(201).json(user) })
             // handle any errors in user creation attempt
             .catch((error) => {
-              console.log(req.body.Password)
               console.error(error);
               res.status(500).send("Error: " + error);
             })
@@ -235,7 +234,7 @@ app.put("/users/:Username",
       $set:
       {
         Username: req.body.Username,
-        // Password: req.body.Password,
+        Password: req.body.Password,
         Email: req.body.Email,
         Birthday: req.body.Birthday
       }
