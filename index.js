@@ -234,7 +234,7 @@ app.put("/users/:Username",
     Users.findOneAndUpdate({ Username: req.params.Username}, {
       $set:
       {
-        Username: req.body.Username,
+        Username: "thisismytest",
         Password: hashedPassword,
         Email: req.body.Email,
         Birthday: req.body.Birthday
