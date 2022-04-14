@@ -170,7 +170,7 @@ app.post("/users",
       .then((name) => {
         // 'name' is a boolean, true if we found that username in the DB, else false
         if (name) {
-          return res.status(400).send(req.body.Username + "already exists.");
+          return res.status(400).send(req.body.Username + " already exists.");
         } else {
           Users
             .create({
