@@ -30,7 +30,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const cors = require('cors');
 // Use CORS with the following sites' requests being accepted
-let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234'];
+let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234', 'http://localhost:4200'];
 
 app.use(cors({
   origin: (origin, callback) => {
@@ -61,7 +61,7 @@ app.get("/", (req, res) => {
 
 
 // Returns a list of all movies in the database.
-app.get("/movies", passport.authenticate("jwt", { session: false }) ,(req, res) => {
+app.get("/movies", passport.authenticate("jwt", { session: false }), (req, res) => {
   Movies.find()
     .then((movies) => {
       res.status(200).json(movies);
@@ -195,18 +195,18 @@ app.post("/users",
   });
 
 
-  // Returns data on a specific user.
-  app.get("/users/:Username", passport.authenticate("jwt", { session: false }), (req, res) => {
-    Users.find({ Username: req.params.Username },
-      { "Username": 1, "Password": 1, "Email": 1, "Birthday": 1, "FavoriteMovies": 1 })
-      .then((user) => {
-        res.status(200).json(user);
-      })
-      .catch((err) => {
-        console.error(err);
-        res.status(500).send("Error: " + err);
-      })
-  });
+// Returns data on a specific user.
+app.get("/users/:Username", passport.authenticate("jwt", { session: false }), (req, res) => {
+  Users.find({ Username: req.params.Username },
+    { "Username": 1, "Password": 1, "Email": 1, "Birthday": 1, "FavoriteMovies": 1 })
+    .then((user) => {
+      res.status(200).json(user);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error: " + err);
+    })
+});
 
 // app.post("/login") logic found in auth.js
 
@@ -231,7 +231,7 @@ app.put("/users/:Username",
     }
     let hashedPassword = Users.hashPassword(req.body.Password);
 
-    Users.findOneAndUpdate({ Username: req.params.Username}, {
+    Users.findOneAndUpdate({ Username: req.params.Username }, {
       $set:
       {
         Username: req.body.Username,
