@@ -1,3 +1,7 @@
+// USE TO PUSH WHEN CHANGES MADE
+// RUN FROM POWERSHELL IN PROJECT DIRECTORY
+// git push heroku main
+
 /* eslint-disable */
 const mongoose = require("mongoose");
 const Models = require("./models.js");
