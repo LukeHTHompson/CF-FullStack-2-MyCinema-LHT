@@ -34,7 +34,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const cors = require('cors');
 // Use CORS with the following sites' requests being accepted
-let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234', 'http://localhost:4200', 'https://lukehthompson.github.io'];
+let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234', 'http://localhost:4200', 'https://lukehthompson.github.io', 'https://mycinema-lht.netlify.app'];
 
 app.use(cors({
   origin: (origin, callback) => {
